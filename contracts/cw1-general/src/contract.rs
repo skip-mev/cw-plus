@@ -9,10 +9,14 @@ use crate::error::ContractError;
 use crate::msg::{ExecuteMsg, InstantiateMsg, QueryMsg};
 
 // version info for migration info
-const CONTRACT_NAME: &str = "crates.io:cw1-general";
+pub const CONTRACT_NAME: &str = "crates.io:cw1-general";
 const CONTRACT_VERSION: &str = env!("CARGO_PKG_VERSION");
 
+#[cfg(feature = "interface")]
+use cw_orch::interface_entry_point;
+
 #[cfg_attr(not(feature = "library"), entry_point)]
+#[cfg_attr(feature = "interface", cw_orch::interface_entry_point)] // cw-orch automatic
 pub fn instantiate(
     deps: DepsMut,
     _env: Env,
@@ -24,6 +28,7 @@ pub fn instantiate(
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
+#[cfg_attr(feature = "interface", cw_orch::interface_entry_point)] // cw-orch automatic
 pub fn execute(
     _deps: DepsMut,
     _env: Env,
@@ -41,6 +46,7 @@ pub fn execute(
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
+#[cfg_attr(feature = "interface", cw_orch::interface_entry_point)] // cw-orch automatic
 pub fn query(_deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
     match msg {
         QueryMsg::CanExecute { .. } => to_binary(&CanExecuteResponse { can_execute: true }),
