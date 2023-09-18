@@ -294,9 +294,9 @@ dependencies = [
 
 [[package]]
 name = "cw-orch"
-version = "0.13.3"
+version = "0.13.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7a61c48b39764502374c437c6cb3c026361758e69a6486c2a7cb5d24e7a62341"
+checksum = "526c8d4d756ab1d45a5a8272f72207ef589791cb83e5018ab1abead7f0d8be8d"
 dependencies = [
  "anyhow",
  "cosmwasm-std",
